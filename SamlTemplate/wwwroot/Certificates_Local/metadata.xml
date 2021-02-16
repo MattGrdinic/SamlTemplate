@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><md:EntityDescriptor xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata" entityID="http://mcw-636:8888/iamapps/ssologin/custom_saml_app/70957d10ccd0dc54406244eefab27010079f12ad"><md:IDPSSODescriptor WantAuthnRequestsSigned="false" protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol"><md:KeyDescriptor use="signing"><ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#"><ds:X509Data><ds:X509Certificate>MIIDdjCCAl6gAwIBAgIQdYhVCsu7zq5OcbmG9kvuEjANBgkqhkiG9w0BAQsFADB3MSgwJgYDVQQD
+DB9NYW5hZ2VFbmdpbmUgQURTZWxmU2VydmljZSBQbHVzMQwwCgYDVQQLDANTU08xETAPBgNVBAoM
+CFpvaG9Db3JwMRAwDgYDVQQHDAdDaGVubmFpMQswCQYDVQQIDAJUTjELMAkGA1UEBhMCSU4wHhcN
+MjEwMjA0MTkwMDE3WhcNMjIwMjA0MTkxMDE3WjB3MSgwJgYDVQQDDB9NYW5hZ2VFbmdpbmUgQURT
+ZWxmU2VydmljZSBQbHVzMQwwCgYDVQQLDANTU08xETAPBgNVBAoMCFpvaG9Db3JwMRAwDgYDVQQH
+DAdDaGVubmFpMQswCQYDVQQIDAJUTjELMAkGA1UEBhMCSU4wggEiMA0GCSqGSIb3DQEBAQUAA4IB
+DwAwggEKAoIBAQDIZS8KUhOAo21GCdsdTDEl+XXTeSaQtdDFPS70u1wnFLYxU3SIp6dzORsf8L7C
+8HcYmhyL3jUtEHVV4SMtHLR7lT/BcJkkeHc6R31V+Z9rCYiSLVWnnmysgmfjuL1wvClEpXW6YqxI
+w6qJZi5HL67FXydz511iz7dS/Y9UquPLXWuOjHhnCSGwW2+BpKYxeSfaQPDmLDf5I3lBoYFdxYHT
+BR9fkJSF8uRnaP2npt+LYCWjjCSwMEvY80Ato4W395fWfsmGZAOqTYFEfOBvRiu3SYPnnDr3yxRr
+y1NIprXChrxUKJZ9r6+WSEUb5vkiWrsVvbbF0c1V+pJEsdVi5CjHAgMBAAEwDQYJKoZIhvcNAQEL
+BQADggEBAEF4BzxJWIt0I4xA5RaAdV5tNr0bM6RhwNSg2yOABTaJmhq6Z9toPGL/9a0ql/tK9Jyp
+q1He323zG1OoxvFfLEcAB7dLkNfZqFBZt/2cRgOQv3tNL5zsOZ3G2N72djSKe3/9gLsBrfG356rv
+eslJ+FS5cG2O/6KYlA9WfQQTfsHPVkkvfhwK0mPWzlp6+Ba4HEuoaa4RUDI0FH1/czvfqLuBgsIE
+8onJ6nNhQjkfA7FgDRew0ms7pddDxnOP3Xasw2Z4LmwNqaxoD8lXxZbJbiLPsQJ3DeXrlpMMWTV1
+5Tr64P6ceXq+ALGunh47SzYo2f7a7F/oDkwuyER/5AuJ1ZE=</ds:X509Certificate></ds:X509Data></ds:KeyInfo></md:KeyDescriptor><md:SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="http://mcw-636:8888/iamapps/ssologout/custom_saml_app/70957d10ccd0dc54406244eefab27010079f12ad"/><md:SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="http://mcw-636:8888/iamapps/ssologout/custom_saml_app/70957d10ccd0dc54406244eefab27010079f12ad"/><md:NameIDFormat>urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress</md:NameIDFormat><md:SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="http://mcw-636:8888/iamapps/ssologin/custom_saml_app/70957d10ccd0dc54406244eefab27010079f12ad"/><md:SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="http://mcw-636:8888/iamapps/ssologin/custom_saml_app/70957d10ccd0dc54406244eefab27010079f12ad"/></md:IDPSSODescriptor></md:EntityDescriptor>

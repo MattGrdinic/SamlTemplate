@@ -1,0 +1,23 @@
+﻿@{
+    ViewData["Title"] = "Saml Template Home Page";
+}
+
+<div >
+
+    <div class="col pt-2">
+
+        <p>
+            <a href="@Url.Action("Privacy", "Home")">Privacy (Page Not Authorized)</a>
+        </p>
+
+        <p>
+            <a href="@Url.Action("AuthorizedPage", "Home")">Sample Authorized Page</a>
+        </p>
+
+        <p>
+            <a href="@Url.Action("Logout", "Home")">Logout</a>
+        </p>
+
+    </div>
+
+</div>

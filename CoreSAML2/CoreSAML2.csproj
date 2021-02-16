@@ -1,0 +1,57 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Description>ASP.NET Core middleware that enables an application to support the SAML2 SSO authentication workflow. This middleware is opensource (free to use) and is not dependent on any .NET Framework libraries. It was forked from the SAML2Core project with specific updates for running against ManageEngine SSO.</Description>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <PackageTags>authentication;security;saml2;.net core 2.1, .net core 2.2, saml2 core, saml2.core, saml, saml SSO, SSO, adfs</PackageTags>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <Version>1.0.0</Version>
+    <PackageLicenseUrl>https://mit-license.org/</PackageLicenseUrl>
+    <Authors>Matthew Grdinic</Authors>
+    <Company>Nicsoft LLC</Company>
+    <AssemblyVersion>3.0.1.0</AssemblyVersion>
+    <FileVersion>3.0.1.0</FileVersion>
+    <PackageProjectUrl>https://github.com/P00159894/SAML2Core</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/P00159894/SAML2Core</RepositoryUrl>
+    <NeutralLanguage>en</NeutralLanguage>
+    <PackageReleaseNotes></PackageReleaseNotes>
+    <RepositoryType>Git</RepositoryType>
+    <RootNamespace>CoreSAML2</RootNamespace>
+    <AssemblyName>CoreSAML2</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Dheida1\**" />
+    <Compile Remove="nuget\**" />
+    <Compile Remove="xmls\**" />
+    <EmbeddedResource Remove="Dheida1\**" />
+    <EmbeddedResource Remove="nuget\**" />
+    <EmbeddedResource Remove="xmls\**" />
+    <None Remove="Dheida1\**" />
+    <None Remove="nuget\**" />
+    <None Remove="xmls\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Models\Provider.cs" />
+    <Compile Remove="Models\SigningCertificates.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Cryptography.X509Certificates.Extension" Version="1.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Cookies" Version="2.2.0" />
+    <PackageReference Include="Microsoft.IdentityModel.Protocols" Version="5.6.0" />
+    <PackageReference Include="Microsoft.IdentityModel.Tokens.Saml" Version="5.6.0" />
+    <PackageReference Include="Microsoft.IdentityModel.Xml" Version="5.6.0" />
+  </ItemGroup>
+
+  <!--<ItemGroup>
+    <Reference Include="Microsoft.ApplicationInsights.AspNetCore">
+      <HintPath>..\..\..\..\..\..\..\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.applicationinsights.aspnetcore\2.1.1\lib\netstandard1.6\Microsoft.ApplicationInsights.AspNetCore.dll</HintPath>
+    </Reference>
+  </ItemGroup>-->
+
+</Project>
