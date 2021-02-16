@@ -1,11 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <Description>ASP.NET Core middleware that enables an application to support the SAML2 SSO authentication workflow. This middleware is opensource (free to use) and is not dependent on any .NET Framework libraries. It was forked from the SAML2Core project with specific updates for running against ManageEngine SSO.</Description>
+    <Description>ASP.NET Core middleware that enables an application to support the SAML2 SSO authentication workflow. This middleware is opensource (free to use) and is not dependent on any .NET Framework libraries. This project was forked from the SAML2Core project with specific compatibility updates when running against ManageEngine SSO.</Description>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <PackageTags>authentication;security;saml2;.net core 2.1, .net core 2.2, saml2 core, saml2.core, saml, saml SSO, SSO, adfs</PackageTags>
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <PackageTags>authentication;security;saml2;.net core 2.1, .net core 2.2, saml2 core, saml2.core, saml, saml SSO, SSO, adfs, ManageEngine, ADSelfServicePlus</PackageTags>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <Version>1.0.0</Version>
     <PackageLicenseUrl>https://mit-license.org/</PackageLicenseUrl>
@@ -13,8 +13,8 @@
     <Company>Nicsoft LLC</Company>
     <AssemblyVersion>3.0.1.0</AssemblyVersion>
     <FileVersion>3.0.1.0</FileVersion>
-    <PackageProjectUrl>https://github.com/P00159894/SAML2Core</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/P00159894/SAML2Core</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/MattGrdinic/SamlTemplate</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/MattGrdinic/SamlTemplate</RepositoryUrl>
     <NeutralLanguage>en</NeutralLanguage>
     <PackageReleaseNotes></PackageReleaseNotes>
     <RepositoryType>Git</RepositoryType>
