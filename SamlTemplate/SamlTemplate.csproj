@@ -12,8 +12,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="wwwroot\Certificates\certificate.pem" />
-    <None Include="wwwroot\Certificates\metadata.xml" />
     <None Include="wwwroot\Certificates_Local\certificate.pem" />
     <None Include="wwwroot\Certificates_Local\metadata.xml" />
   </ItemGroup>
@@ -30,6 +28,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="wwwroot\Certificates\" />
     <Folder Include="wwwroot\fonts\" />
     <Folder Include="wwwroot\img\" />
   </ItemGroup>
