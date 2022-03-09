@@ -1,7 +1,7 @@
 # CoreSAML2 SSO Middleware
-This project implements the SAML2 standard used by many SSO packages for .NET Core clients. It was forked form the excellent https://github.com/dina-heidar/saml2-authentication, with small changes made to better handle *Manage Engines's* *ADSelfService Plus* implementation. While ManageEngine was our target system, this library should work well with just about any provider. It has been tested on .NET Core 3.1.
+This project implements the SAML2 standard used by many SSO packages for .NET Core clients. It was forked form the excellent https://github.com/dina-heidar/saml2-authentication, with small changes made to better handle *Manage Engines's* *ADSelfService Plus* implementation, as well as dynamic providers such as https://github.com/Aguafrommars/DynamicAuthProviders. While ManageEngine and AD FS were our target systems, this library should work well with just about any Saml Idp. It has been tested on .NET Core 3.1 and .NET 6.
 
-*One hint here is ManageEngine can be downloaded and installed for free on your local machine. This makes local testing a snap.*
+*ManageEngine can be downloaded and installed for free on your local machine. This makes local testing a snap.*
 
 Most users will want the Nuget packge, which can be found by searching within Visual Studio for *CoreSAML2*. Visit the project's page here: https://www.nuget.org/packages/CoreSAML2/1.0.0
 
