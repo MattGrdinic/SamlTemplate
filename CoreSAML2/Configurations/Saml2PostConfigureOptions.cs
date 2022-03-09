@@ -102,6 +102,21 @@ namespace CoreSaml.AspNetCore.Authentication.Saml2
                     typeof(Saml2Handler).FullName, name, "v1");
                 options.StateDataFormat = new PropertiesDataFormat(dataProtector);
             }
+
+            var httpContext = new DefaultHttpContext();
+
+            // If null we're in the Dynamic Providers post options callabck, and have no HttpContext. Thus, create one from the UrlBase option.
+
+            if (_httpContextAccessor.HttpContext == null)
+            {
+                var uri = new Uri(options.UrlBase);
+
+                httpContext.Request.Scheme = uri.Scheme;
+                httpContext.Request.Host = new HostString(uri.Host);
+
+                _httpContextAccessor.HttpContext = httpContext;
+            }
+
             var request = _httpContextAccessor.HttpContext.Request;
             if (options.ServiceProvider.AssertionConsumerServices != null)
             {

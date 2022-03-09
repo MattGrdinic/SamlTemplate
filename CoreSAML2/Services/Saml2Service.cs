@@ -182,7 +182,13 @@ namespace CoreSaml.AspNetCore.Authentication.Saml2
                 }
             };
 
-            string singleLogoutUrl = options.Configuration.SingleLogoutServices.FirstOrDefault().Location;
+            // Support additional query string values at logout.
+            string singleLogoutUrl = options.Configuration.SingleLogoutServices.FirstOrDefault().Location + "?";
+
+            if(options.SignOutQueryString != String.Empty)
+            {
+                singleLogoutUrl = singleLogoutUrl + options.SignOutQueryString + "&";
+            }
 
             //serialize AuthnRequest to xml string  
             string xmlTemplate = string.Empty;
@@ -214,7 +220,7 @@ namespace CoreSaml.AspNetCore.Authentication.Saml2
                     throw new ArgumentException("Signing key must be an instance of either RSA or DSA.");
                 AddSignature(result, spPrivateKey, hashingAlgorithm, options.ServiceProvider.HashAlgorithm);
             }
-            return $"{singleLogoutUrl}?{result}";
+            return $"{singleLogoutUrl}{result}";
         }
 
         /// <summary>

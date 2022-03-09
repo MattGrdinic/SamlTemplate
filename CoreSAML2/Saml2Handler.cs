@@ -47,7 +47,7 @@ namespace CoreSaml.AspNetCore.Authentication.Saml2
     /// </summary>
     /// <seealso cref="RemoteAuthenticationHandler{Saml2Options}" />
     /// <seealso cref="IAuthenticationSignOutHandler" />
-    internal class Saml2Handler : RemoteAuthenticationHandler<Saml2Options>, IAuthenticationSignOutHandler
+    public class Saml2Handler : RemoteAuthenticationHandler<Saml2Options>, IAuthenticationSignOutHandler
     {
         /// <summary>
         /// The correlation property

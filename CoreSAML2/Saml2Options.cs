@@ -54,6 +54,7 @@ namespace CoreSaml.AspNetCore.Authentication.Saml2
         /// </summary>
         public Saml2Options()
         {
+            UrlBase = "";
             EnablePIILogging = false;
             WantAuthnRequestsSigned = false;
             ForwardChallenge = AuthenticationScheme;
@@ -61,6 +62,7 @@ namespace CoreSaml.AspNetCore.Authentication.Saml2
             SignOutScheme = AuthenticationScheme;
             AuthenticationScheme = Saml2Defaults.AuthenticationScheme;
             SignOutPath = new PathString("/signedout");
+            SignOutQueryString = "";
             CallbackPath = new PathString("/saml2-signin");
             DefaultRedirectUrl = new PathString("/");
             RequireHttpsMetadata = true;
@@ -107,6 +109,12 @@ namespace CoreSaml.AspNetCore.Authentication.Saml2
             Events = new Saml2Events();
             AllowUnsolicitedLogins = false;
         }
+
+
+        /// <summary>
+        /// Used to support dynamic providers, should be set in options to the scheme and host for the service provider.
+        /// </summary>
+        public string UrlBase { get; set; }
 
         /// <summary>
         /// Enable to show personally identifiable information in error messages.
@@ -160,6 +168,16 @@ namespace CoreSaml.AspNetCore.Authentication.Saml2
         /// The remote sign out path.
         /// </value>
         public PathString SignOutPath { get; set; }
+
+        /// <summary>
+        /// Gets or sets the sign out query string. 
+        /// If set, prepends this value to your Idp logout service url. Used by AD FS to supply ?wa=wsignout1.0.
+        /// Should only contain the raw key value pair, not a ? or ampersands.
+        /// </summary>
+        /// <value>
+        /// The signout query string.
+        /// </value>
+        public string SignOutQueryString { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether [use token lifetime].
