@@ -3,7 +3,7 @@ This project implements the SAML2 standard used by many SSO packages for .NET Co
 
 *ManageEngine can be downloaded and installed for free on your local machine. This makes local testing a snap.*
 
-Most users will want the Nuget packge, which can be found by searching within Visual Studio for *CoreSAML2*. Visit the project's page here: https://www.nuget.org/packages/CoreSAML2/1.0.0
+Most users will want the Nuget packge, which can be found by searching within Visual Studio for *CoreSAML2*. Visit the project's page here: https://www.nuget.org/packages/CoreSAML2/
 
 ## SAML SSO Overview
 In short: someone visits a location on your site you've designated as private. Seeing this, ASP.NET Core is wired *by us* to process this request as an authentication  "challenge". The challenge is to see if we have a universally agreed upon set of credentials for this system. If we possess those credentials the middleware let's us pass. If not, the middleware redirects the user to an Identity Provider (IdP) and presents a log in. If we pass this login on the external site, we're redirected back to the original site (what's called the Service Provider or SP) and can now access the originally requested resource. SSO is, really, just a bunch of redirects and XML processing.
