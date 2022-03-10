@@ -1,9 +1,10 @@
 # CoreSAML2 SSO Middleware
-This project implements the SAML2 standard used by many SSO packages for .NET Core clients. It was forked form the excellent https://github.com/dina-heidar/saml2-authentication, with small changes made to better handle *Manage Engines's* *ADSelfService Plus* implementation, as well as dynamic providers such as https://github.com/Aguafrommars/DynamicAuthProviders. While ManageEngine and AD FS were our target systems, this library should work well with just about any Saml Idp. It has been tested on .NET Core 3.1 and .NET 6.
+This project implements the SAML2 login protocol for .NET Core clients. It was forked form the excellent https://github.com/dina-heidar/saml2-authentication, with small changes made to better handle *Manage Engines's* *ADSelfService Plus* implementation, as well as support dynamic providers such as https://github.com/Aguafrommars/DynamicAuthProviders. While ManageEngine and AD FS were our target systems, this library should work well with just about any Saml Idp. It has been tested on .NET Core 3.1 and .NET 6.
+Note: This project does not yet support Single Logout (e.g, identity provider initiated logout). 
 
 *ManageEngine can be downloaded and installed for free on your local machine. This makes local testing a snap.*
 
-Most users will want the Nuget packge, which can be found by searching within Visual Studio for *CoreSAML2*. Visit the project's page here: https://www.nuget.org/packages/CoreSAML2/1.0.0
+Most users will want the Nuget packge, which can be found by searching within Visual Studio for *CoreSAML2*. Visit the project's page here: https://www.nuget.org/packages/CoreSAML2/1.0.2
 
 ## SAML SSO Overview
 In short: someone visits a location on your site you've designated as private. Seeing this, ASP.NET Core is wired *by us* to process this request as an authentication  "challenge". The challenge is to see if we have a universally agreed upon set of credentials for this system. If we possess those credentials the middleware let's us pass. If not, the middleware redirects the user to an Identity Provider (IdP) and presents a log in. If we pass this login on the external site, we're redirected back to the original site (what's called the Service Provider or SP) and can now access the originally requested resource. SSO is, really, just a bunch of redirects and XML processing.

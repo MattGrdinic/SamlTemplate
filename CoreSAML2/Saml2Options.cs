@@ -112,7 +112,8 @@ namespace CoreSaml.AspNetCore.Authentication.Saml2
 
 
         /// <summary>
-        /// Used to support dynamic providers, should be set in options to the scheme and host for the service provider.
+        /// Required. Should be scheme and host for the service provider (e.g., https://mycompany.com).
+        /// Also used as the Single Logout redirect address for unsolicited login requests. 
         /// </summary>
         public string UrlBase { get; set; }
 

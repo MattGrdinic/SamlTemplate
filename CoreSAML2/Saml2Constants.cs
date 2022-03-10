@@ -80,6 +80,10 @@ namespace CoreSaml.AspNetCore.Authentication.Saml2
             /// The logout response
             /// </summary>
             public const string LogoutResponse = "LogoutResponse";
+            /// <summary>
+            /// The logout request (for SLO)
+            /// </summary>
+            public const string LogoutRequest = "LogoutRequest";
         }
 
         /// <summary>

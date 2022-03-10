@@ -1,13 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <Description>ASP.NET Core middleware to support the SAML2 SSO authentication workflow. This project is forked from SAML2Core with specific compatibility updates for running against ManageEngine's ADSelfService Plus. This middleware is opensource and is not dependent on any .NET Framework libraries.</Description>
+    <Description>ASP.NET Core middleware to support the SAML2 SSO siginin protocol. This project is forked from SAML2Core with specific compatibility updates for running against ManageEngine's ADSelfService Plus. This middleware is opensource and is not dependent on any .NET Framework libraries.</Description>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <PackageTags>authentication;security;saml2;.net core 2.1, .net core 2.2, saml2 core, saml2.core, saml, saml SSO, SSO, adfs, ManageEngine, ADSelfService Plus</PackageTags>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <Version>1.0.0</Version>
+    <Version>1.0.2</Version>
     <PackageLicenseUrl></PackageLicenseUrl>
     <Authors>Matthew Grdinic</Authors>
     <Company>Nicsoft LLC</Company>
@@ -22,7 +22,7 @@
     <AssemblyName>CoreSAML2</AssemblyName>
     <PackageLicenseExpression></PackageLicenseExpression>
     <PackageLicenseFile>License.txt</PackageLicenseFile>
-    <Copyright>2021 Nicsoft LLC</Copyright>
+    <Copyright>2022 Nicsoft LLC</Copyright>
   </PropertyGroup>
 
   <ItemGroup>

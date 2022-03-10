@@ -221,6 +221,10 @@ namespace CoreSaml.AspNetCore.Authentication.Saml2
             return true;
         }
 
+        /// <summary>
+        /// LoadXML Document.
+        /// </summary>
+        /// <param name="xml"></param>
         public void LoadXml(string xml)
         {
             _xmlDoc = new XmlDocument();
@@ -231,6 +235,10 @@ namespace CoreSaml.AspNetCore.Authentication.Saml2
             _xmlNameSpaceManager = GetNamespaceManager(); //lets construct a "manager" for XPath queries
         }
 
+        /// <summary>
+        /// Load XML From Base64 String.
+        /// </summary>
+        /// <param name="response"></param>
         public void LoadXmlFromBase64(string response)
         {
             UTF8Encoding enc = new UTF8Encoding();
@@ -248,8 +256,29 @@ namespace CoreSaml.AspNetCore.Authentication.Saml2
                 return HandleRequestResult.Fail("Request method must be an HTTP-Post Method");
 
             var form = await Request.ReadFormAsync();
+
+            var samlRequest = form[Saml2Constants.Parameters.SamlRequest];
             var response = form[Saml2Constants.Parameters.SamlResponse];
             var relayState = form[Saml2Constants.Parameters.RelayState].ToString()?.DeflateDecompress();
+
+            // Check for logout requests to the login endpoint (Happens in AD FS when we loose a session).
+
+            if(samlRequest.Count != 0)
+            {
+                try
+                {
+                    UTF8Encoding enc = new UTF8Encoding();
+                    var raw = enc.GetString(Convert.FromBase64String(samlRequest)).ToString();
+
+                    if (raw.Contains(Saml2Constants.ResponseTypes.LogoutRequest))
+                    {
+                        string redirectUrl = !string.IsNullOrEmpty(Options.UrlBase.ToString()) ? Options.UrlBase.ToString() : Options.CallbackPath.ToString();
+                        Context.Response.Redirect(redirectUrl, true);
+                        return HandleRequestResult.Handle();
+                    }
+
+                } catch {}
+            }
 
             AuthenticationProperties authenticationProperties = Options.StateDataFormat.Unprotect(relayState);
 
