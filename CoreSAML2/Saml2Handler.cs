@@ -28,6 +28,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.IdentityModel.Tokens.Saml2;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Security.Claims;
@@ -263,7 +264,7 @@ namespace CoreSaml.AspNetCore.Authentication.Saml2
 
             // Check for logout requests to the login endpoint (Happens in AD FS when we loose a session).
 
-            if(samlRequest.Count != 0)
+            if (samlRequest.Count != 0)
             {
                 try
                 {
@@ -277,7 +278,8 @@ namespace CoreSaml.AspNetCore.Authentication.Saml2
                         return HandleRequestResult.Handle();
                     }
 
-                } catch {}
+                }
+                catch { }
             }
 
             AuthenticationProperties authenticationProperties = Options.StateDataFormat.Unprotect(relayState);
@@ -401,7 +403,7 @@ namespace CoreSaml.AspNetCore.Authentication.Saml2
                     var _xmlNameSpaceManager = GetNamespaceManager(); // Manager For XPath Queries.
 
                     // Important: To Check Signatures We Pull The Signature XML Node. 
-                    
+
                     // Critically This Check Differers From The ValidateToken Call Below, See Note.
 
                     XmlNodeList nodeList = _xmlDoc.SelectNodes(".//ds:Signature", _xmlNameSpaceManager);
@@ -411,7 +413,7 @@ namespace CoreSaml.AspNetCore.Authentication.Saml2
                     var check_reference = ValidateSignatureReference(signedXml);
                     var check_signature = signedXml.CheckSignature(cert, true);
 
-                    if(check_reference && check_signature)
+                    if (check_reference && check_signature)
                     {
                         // Tech Note: At This Point We've:
 
@@ -425,7 +427,7 @@ namespace CoreSaml.AspNetCore.Authentication.Saml2
 
                         // Specifically, The Signature Validation Process Requires The XML Byte Stream To Be Identical, 
                         // And Unfortunately Our Token Call Above, Among Other Things, Strips XML Namespaces And Changes Line Feeds. 
-                        
+
                         // To Address This We Pass This Call The "Original" XML From The LoadXmlFromBase64() Call Above.
                         try
                         {
@@ -435,7 +437,10 @@ namespace CoreSaml.AspNetCore.Authentication.Saml2
 
                             principal = validator.ValidateToken(nodeListAssertion[0].OuterXml, tvp, out parsedToken);
                         }
-                        catch (Exception e) { }
+                        catch (Exception e)
+                        {
+                            Debug.WriteLine(e.ToString());
+                        }
                     }
                 }
 
@@ -463,10 +468,10 @@ namespace CoreSaml.AspNetCore.Authentication.Saml2
                 ClaimsIdentity identity = new ClaimsIdentity(principal.Claims, Scheme.Name);
 
                 session.SessionIndex = !String.IsNullOrEmpty(session.SessionIndex) ? session.SessionIndex : assertion.ID;
-                
+
                 //get the session index from assertion so you can use it to logout later
                 identity.AddClaim(new Claim(Saml2ClaimTypes.SessionIndex, session.SessionIndex));
-                
+
                 // Create Entry For User.Identity.Name
 
                 if (principal.Claims.Any(c => c.Type == ClaimTypes.NameIdentifier))
@@ -553,7 +558,7 @@ namespace CoreSaml.AspNetCore.Authentication.Saml2
                 return false;
             }
 
-            //sp initated logout reqeuest. This is the resposne recieved from the idp as a result of the sp intiated logout request.
+            //sp initated logout reqeuest. This is the response received from the idp as a result of the sp intiated logout request.
             var response = form[Saml2Constants.Parameters.SamlResponse];
             var relayState = form[Saml2Constants.Parameters.RelayState].ToString()?.DeflateDecompress();
 
@@ -563,7 +568,7 @@ namespace CoreSaml.AspNetCore.Authentication.Saml2
             ResponseType idpSamlResponseToken = _saml2Service.GetSamlResponseToken(base64EncodedSamlResponse, Saml2Constants.ResponseTypes.LogoutResponse, Options);
 
             IRequestCookieCollection cookies = Request.Cookies;
-            string signoutSamlRequestId = cookies[cookies.Keys.FirstOrDefault(key => key.StartsWith(Options.AuthenticationScheme + Options.SignOutPath))];
+            string signoutSamlRequestId = cookies[cookies.Keys.FirstOrDefault(key => key.StartsWith(Options.AuthenticationScheme + Options.SignOutPath.ToString().Replace("/", "")))];
 
             _saml2Service.CheckIfReplayAttack(idpSamlResponseToken.InResponseTo, signoutSamlRequestId);
             _saml2Service.CheckStatus(idpSamlResponseToken);
