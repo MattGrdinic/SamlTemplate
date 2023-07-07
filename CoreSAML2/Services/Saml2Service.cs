@@ -131,7 +131,11 @@ namespace CoreSaml.AspNetCore.Authentication.Saml2
             if (options.ServiceProvider.X509Certificate2 != null && options.WantAuthnRequestsSigned)
             {
                 AsymmetricAlgorithm spPrivateKey = spCertificate.PrivateKey;
-                string hashingAlgorithm = options.Configuration.Signature.SignedInfo.SignatureMethod;
+                string hashingAlgorithm = "http://www.w3.org/2001/04/xmldsig-more#rsa-sha256";
+                if (options.Configuration.Signature != null)
+                {
+                    hashingAlgorithm = options.Configuration.Signature.SignedInfo.SignatureMethod;
+                }
                 // Check if the key is of a supported type. [SAMLBind] sect. 3.4.4.1 specifies this.
                 if (!(spPrivateKey is RSA || spPrivateKey is DSA || spPrivateKey == null))
                     throw new ArgumentException("Signing key must be an instance of either RSA or DSA.");
@@ -185,7 +189,7 @@ namespace CoreSaml.AspNetCore.Authentication.Saml2
             // Support additional query string values at logout.
             string singleLogoutUrl = options.Configuration.SingleLogoutServices.FirstOrDefault().Location + "?";
 
-            if(options.SignOutQueryString != String.Empty)
+            if (options.SignOutQueryString != String.Empty)
             {
                 singleLogoutUrl = singleLogoutUrl + options.SignOutQueryString + "&";
             }
@@ -213,7 +217,11 @@ namespace CoreSaml.AspNetCore.Authentication.Saml2
             if (options.hasCertificate && options.WantSignoutRequestsSigned)
             {
                 X509Certificate2 spCertificate = GetServiceProviderCertficate(options);
-                string hashingAlgorithm = options.Configuration.Signature.SignedInfo.SignatureMethod;
+                string hashingAlgorithm = "http://www.w3.org/2001/04/xmldsig-more#rsa-sha256";
+                if (options.Configuration.Signature != null)
+                {
+                    hashingAlgorithm = options.Configuration.Signature.SignedInfo.SignatureMethod;
+                }
                 AsymmetricAlgorithm spPrivateKey = spCertificate.PrivateKey;
                 // Check if the key is of a supported type. [SAMLBind] sect. 3.4.4.1 specifies this.
                 if (!(spPrivateKey is RSA || spPrivateKey is DSA || spPrivateKey == null))
@@ -345,7 +353,7 @@ namespace CoreSaml.AspNetCore.Authentication.Saml2
         {
             XmlNodeList XMLSignatures = xmlDoc.GetElementsByTagName(Saml2Constants.Parameters.Signature, Saml2Constants.Namespaces.DsNamespace);
 
-            if((options.RequireMessageSigned || options.WantAssertionsSigned) && XMLSignatures.Count == 0)
+            if ((options.RequireMessageSigned || options.WantAssertionsSigned) && XMLSignatures.Count == 0)
             {
                 return false;
             }
