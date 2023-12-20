@@ -300,6 +300,11 @@ namespace CoreSaml.AspNetCore.Authentication.Saml2
                     return HandleRequestResult.Fail("Correlation failed.", authenticationProperties);
                 }
 
+                if (_configuration == null)
+                {
+                    _configuration = await Options.ConfigurationManager.GetConfigurationAsync(Context.RequestAborted);
+                }
+
                 string base64EncodedSamlResponse = response;
                 ResponseType idpSamlResponseToken = _saml2Service.GetSamlResponseToken(base64EncodedSamlResponse, Saml2Constants.ResponseTypes.AuthnResponse, Options);
 
@@ -346,11 +351,6 @@ namespace CoreSaml.AspNetCore.Authentication.Saml2
                 if (assertion.Subject.Items.Any(x => x.GetType() == typeof(NameIDType)))
                 {
                     Options.NameIDType = (NameIDType)assertion.Subject.Items.FirstOrDefault(x => x.GetType() == typeof(NameIDType));
-                }
-
-                if (_configuration == null)
-                {
-                    _configuration = await Options.ConfigurationManager.GetConfigurationAsync(Context.RequestAborted);
                 }
 
                 var tvp = Options.TokenValidationParameters.Clone();
