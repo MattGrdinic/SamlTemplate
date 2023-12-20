@@ -8,7 +8,7 @@
 		<PackageTags>authentication;security;saml2;.net core 2.1, .net core 2.2, saml2 core, saml2.core, saml, saml SSO, SSO, adfs, ManageEngine, ADSelfService Plus</PackageTags>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-		<Version>1.0.3</Version>
+		<Version>1.0.5</Version>
 		<PackageLicenseUrl></PackageLicenseUrl>
 		<Authors>Matthew Grdinic</Authors>
 		<Company>Nicsoft LLC</Company>
