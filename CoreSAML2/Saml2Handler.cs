@@ -303,6 +303,8 @@ namespace CoreSaml.AspNetCore.Authentication.Saml2
                 if (_configuration == null)
                 {
                     _configuration = await Options.ConfigurationManager.GetConfigurationAsync(Context.RequestAborted);
+                    // Get configuration again to avoid timing issue where the configuration was null on the first call.
+                    Options.Configuration = _configuration;
                 }
 
                 string base64EncodedSamlResponse = response;
