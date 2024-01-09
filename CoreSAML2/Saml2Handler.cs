@@ -566,6 +566,12 @@ namespace CoreSaml.AspNetCore.Authentication.Saml2
 
             AuthenticationProperties authenticationProperties = Options.StateDataFormat.Unprotect(relayState);
 
+            if(Options.Configuration == null)
+            {
+                _configuration = await Options.ConfigurationManager.GetConfigurationAsync(Context.RequestAborted);
+                Options.Configuration = _configuration;
+            }
+
             string base64EncodedSamlResponse = response;
             ResponseType idpSamlResponseToken = _saml2Service.GetSamlResponseToken(base64EncodedSamlResponse, Saml2Constants.ResponseTypes.LogoutResponse, Options);
 
